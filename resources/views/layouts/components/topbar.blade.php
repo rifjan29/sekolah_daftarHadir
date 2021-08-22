@@ -18,7 +18,6 @@
                     <a class="nav-link" href="#" data-toggle="modal" data-target="#mediumModal"><i class="fa fa-power -off"></i>Logout</a>
                 </div>
             </div>
-
         </div>
     </div>
 </header>

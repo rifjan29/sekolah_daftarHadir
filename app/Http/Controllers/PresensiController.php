@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Presensi;
+use App\Models\Guru;
+use Illuminate\Support\Facades\Auth;
+use Exception;
 
 class PresensiController extends Controller
 {
@@ -13,7 +17,9 @@ class PresensiController extends Controller
      */
     public function index()
     {
-        return view('presensi.index');
+        $this->params['data'] = Guru::orderBy('nama')->get(); 
+
+        return view('presensi.index', $this->params);
     }
 
     /**
@@ -34,7 +40,34 @@ class PresensiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $presensi = $request->get('presensi');
+            $tambahPresensi = new Presensi;
+            $tambahPresensi->guru_id = $request->get('guru');
+            $tambahPresensi->user_id = Auth::id();
+            switch ($presensi) {
+                case 'Hadir':
+                    $tambahPresensi->presensi = $presensi;
+                    break;
+                case 'Absen':
+                    $tambahPresensi->presensi = $presensi;
+                    break;
+                case 'Alpa':
+                    $tambahPresensi->presensi = $presensi;
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+            $tambahPresensi->save();
+            return redirect('/presensi')->withStatus('Berhasil Presensi');
+
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+        
     }
 
     /**

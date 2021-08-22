@@ -14,40 +14,27 @@
                             </a>
                         </div>
                         <div>
-                            <strong class="card-title ">Tambah {{ ucwords(Request::segment(1)) }}</strong>
+                            <strong class="card-title ">Edit {{ ucwords(Request::segment(1)) }}</strong>
                         </div>
                     </div>
                     <div class="card-body">
-                        @if (session('status'))
-                            <div class="sufee-alert alert with-close alert-primary alert-dismissible fade show">
-                                <span class="badge badge-pill badge-primary">Berhasil</span>
-                                {{session('status')}}
+                       
+                        @if (session('error'))
+                            <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+                                <span class="badge badge-pill badge-danger">Gagal</span>
+                                {{session('error')}}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        @elseif (session('error'))
-                        <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
-                            <span class="badge badge-pill badge-danger">Gagal</span>
-                            {{session('error')}}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
                         @endif
-                        <form action="{{ route('guru.store') }}" method="post">
+                        <form action="{{ route('buku-tamu.update', $data->id) }}" method="post">
                             @csrf
+                            @method('put')
                             <div class="form-group">
                                 <label for="nama" class="control-label mb-1">Nama</label>
-                                <input id="nama" name="nama" type="text" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}" required>
+                                <input id="nama" name="nama" type="text" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama', $data->nama) }}" required>
                                 @error('nama')
-                                <small class="help-block form-text text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                            <div class="form-group has-success">
-                                <label for="nip" class="control-label mb-1">NIP (jika ada)</label>
-                                <input id="nip" name="nip" type="text" class="form-control @error('nip') is-invalid @enderror" value="{{ old('nip') }}">
-                                @error('nip')
                                 <small class="help-block form-text text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
@@ -55,12 +42,26 @@
                                 <label for="gender" class="control-label mb-1">Jenis Kelamin</label>
                                 <select class="form-control @error('gender') is-invalid @enderror" name="gender" id="gender" required>
                                     <option value="0">--Pilih Jenis Kelamin--</option>
-                                    <option value="Laki-laki" {{ old('gender') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                                    <option value="Perempuan" {{ old('gender') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-                                    <option value="Lainnya" {{ old('gender') == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                                    <option value="Laki-laki" {{ old('gender', $data->gender) == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                    <option value="Perempuan" {{ old('gender', $data->gender) == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                    <option value="Lainnya" {{ old('gender', $data->gender) == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
                                 </select>
                                 @error('gender')
                                 <small class="help-block form-text text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="form-group has-success">
+                                <label for="asal" class="control-label mb-1">Alamat/Instansi</label>
+                                <input id="asal" name="asal" type="text" class="form-control @error('asal') is-invalid @enderror" value="{{ old('asal', $data->asal) }}">
+                                @error('asal')
+                                <small class="help-block form-text text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="tujuan" class="form-control-label">Tujuan</label>
+                                <textarea name="tujuan" id="tujuan" rows="9" placeholder="exp:kunjungan dinas..." class="form-control @error('tujuan') is-invalid @enderror"> {{ old('tujuan', $data->tujuan) }}</textarea>
+                                @error('tujuan')
+                                <span class="badge badge-danger">{{  $errors->first('tujuan') }}</span>
                                 @enderror
                             </div>
                             <div>

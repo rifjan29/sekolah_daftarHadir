@@ -24,4 +24,5 @@ class DashboardController extends Controller
 
         return view('dashboard', $this->params);
     }
+  
 }
