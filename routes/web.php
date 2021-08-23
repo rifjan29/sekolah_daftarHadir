@@ -23,7 +23,7 @@ use App\Http\Controllers\BukuTamuController;
     //     return view('dashboard');
     // })->middleware(['auth'])->name('dashboard');
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/', [BukuTamuController::class, 'bukuTamu']);
+    Route::get('/', [DashboardController::class, 'index']);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/admin', AdminController::class);
     Route::resource('/guru', GuruController::class);

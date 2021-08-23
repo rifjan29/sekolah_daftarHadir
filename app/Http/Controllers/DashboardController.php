@@ -17,10 +17,10 @@ class DashboardController extends Controller
         $this->params['admin'] = User::count();
         $this->params['guru'] = Guru::count();
         $this->params['tamu'] = BukuTamu::count();
-        $this->params['tamuHariIni'] = BukuTamu::whereDate('created_at', date('Y-m-d H:i:s'))->count();
-        $this->params['presensiHariIni'] = Presensi::where('presensi', 'Hadir')->whereDate('created_at', date('Y-m-d H:i:s'))->count();
-        $this->params['absenHariIni'] = Presensi::where('presensi', 'Absen')->whereDate('created_at', date('Y-m-d H:i:s'))->count();
-        $this->params['alpaHariIni'] = Presensi::where('presensi', 'Alpa')->whereDate('created_at', date('Y-m-d H:i:s'))->count();
+        $this->params['tamuHariIni'] = BukuTamu::whereDate('created_at', date('Y-m-d'))->count();
+        $this->params['presensiHariIni'] = Presensi::where('presensi', 'Hadir')->whereDate('created_at', date('Y-m-d'))->count();
+        $this->params['absenHariIni'] = Presensi::where('presensi', 'Absen')->whereDate('created_at', date('Y-m-d'))->count();
+        $this->params['alpaHariIni'] = Presensi::where('presensi', 'Alpa')->whereDate('created_at', date('Y-m-d'))->count();
 
         return view('dashboard', $this->params);
     }
