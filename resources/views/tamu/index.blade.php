@@ -41,9 +41,10 @@
                                 <tr>
                                     <th class="text-center">#</th>
                                     <th class="text-center">Nama</th>
+                                    <th class="text-center">Jabatan</th>
                                     <th class="text-center">Jenis Kelamin</th>
                                     <th class="text-center">Alamat/Instansi</th>
-                                    <th class="text-center">Tujuan</th>
+                                    <th class="text-center">Tujuan/Keperluan</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
@@ -52,6 +53,7 @@
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td class="text-center">{{ $item->nama }}</td>
+                                    <td class="text-center">{{ $item->jabatan }}</td>
                                     <td class="text-center">{{ $item->gender }}</td>
                                     <td class="text-center">{{ $item->asal }}</td>
                                     <td class="text-center">{{ $item->tujuan}}</td>

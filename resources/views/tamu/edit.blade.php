@@ -39,6 +39,13 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for="jabatan" class="control-label mb-1">Jabatan</label>
+                                <input id="jabatan" name="jabatan" type="text" class="form-control @error('jabatan') is-invalid @enderror" value="{{ old('jabatan', $data->jabatan) }}" required>
+                                @error('jabatan')
+                                <small class="help-block form-text text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label for="gender" class="control-label mb-1">Jenis Kelamin</label>
                                 <select class="form-control @error('gender') is-invalid @enderror" name="gender" id="gender" required>
                                     <option value="0">--Pilih Jenis Kelamin--</option>

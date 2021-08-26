@@ -28,9 +28,16 @@
                             @csrf
                             <div class="form-group">
                                 <label for="Nama" class=" form-control-label">Nama</label>
-                                <input type="text" id="nama" name="nama" placeholder="exp:sinta..." class="form-control" autofocus>
+                                <input type="text" id="nama" name="nama" placeholder="ex:sinta..." class="form-control" autofocus>
                                 @if ($errors->has('nama'))
                                     <span class="badge badge-danger">{{  $errors->first('nama') }}</span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="jabatan" class=" form-control-label">Jabatan</label>
+                                <input type="text" id="jabatan" name="jabatan" placeholder="ex:guru..." class="form-control" >
+                                @if ($errors->has('jabatan'))
+                                    <span class="badge badge-danger">{{  $errors->first('jabatan') }}</span>
                                 @endif
                             </div>
                             <div class="form-group mt-4">
@@ -47,14 +54,14 @@
                             </div>
                             <div class="form-group mt-4">
                                 <label for="asal" class=" form-control-label">Alamat/Instansi</label>
-                                <input type="text" id="asal" name="asal" placeholder="exp:bondowoso" class="form-control">
+                                <input type="text" id="asal" name="asal" placeholder="ex:bondowoso" class="form-control">
                                 @if ($errors->has('asal'))
                                     <span class="badge badge-danger">{{  $errors->first('asal') }}</span>
                                 @endif
                             </div>
                             <div class="form-group">
                                 <label for="tujuan" class="form-control-label">Tujuan</label>
-                                <textarea name="tujuan" id="tujuan" rows="9" placeholder="exp:kunjungan dinas..." class="form-control"></textarea>
+                                <textarea name="tujuan" id="tujuan" rows="9" placeholder="ex:kunjungan dinas..." class="form-control"></textarea>
                                 @if ($errors->has('tujuan'))
                                     <span class="badge badge-danger">{{  $errors->first('tujuan') }}</span>
                                 @endif

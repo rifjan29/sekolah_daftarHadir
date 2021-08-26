@@ -38,6 +38,8 @@
                                 <th class="text-center">#</th>
                                 <th class="text-center">NIP</th>
                                 <th class="text-center">Nama</th>
+                                <th class="text-center">Golongan</th>
+                                <th class="text-center">Jabatan</th>
                                 <th class="text-center">Jenis Kelamin</th>
                                 <th class="text-center">Presensi</th>
                             </tr>
@@ -48,6 +50,8 @@
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td class="text-center">{{ isset($item->nip) ? $item->nip : '-' }}</td>
                                 <td class="text-center">{{ $item->nama }}</td>
+                                <td class="text-center">{{ $item->gol }}</td>
+                                <td class="text-center">{{ $item->jabatan }}</td>
                                 <td class="text-center">{{ $item->gender }}</td>
                                 <td class="d-flex justify-content-center">
                                     @php

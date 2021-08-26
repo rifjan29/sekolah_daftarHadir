@@ -38,6 +38,13 @@
                         <form action="{{ route('guru.update', $guru->id) }}" method="post">
                             @csrf
                             @method('put')
+                            <div class="form-group has-success">
+                                <label for="nip" class="control-label mb-1">NIP (jika ada)</label>
+                                <input id="nip" name="nip" type="text" class="form-control @error('nip') is-invalid @enderror" value="{{ old('nip', $guru->nip) }}">
+                                @error('nip')
+                                <small class="help-block form-text text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
                             <div class="form-group">
                                 <label for="nama" class="control-label mb-1">Nama</label>
                                 <input id="nama" name="nama" type="text" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama', $guru->nama) }}" required>
@@ -45,10 +52,17 @@
                                 <small class="help-block form-text text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
-                            <div class="form-group has-success">
-                                <label for="nip" class="control-label mb-1">NIP (jika ada)</label>
-                                <input id="nip" name="nip" type="text" class="form-control @error('nip') is-invalid @enderror" value="{{ old('nip', $guru->nip) }}">
-                                @error('nip')
+                            <div class="form-group">
+                                <label for="gol" class="control-label mb-1">Golongan</label>
+                                <input id="gol" name="gol" type="text" class="form-control @error('gol') is-invalid @enderror" value="{{ old('gol', $guru->gol) }}" required>
+                                @error('gol')
+                                <small class="help-block form-text text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="jabatan" class="control-label mb-1">Jabatan</label>
+                                <input id="jabatan" name="jabatan" type="text" class="form-control @error('jabatan') is-invalid @enderror" value="{{ old('jabatan', $guru->jabatan) }}" required>
+                                @error('jabatan')
                                 <small class="help-block form-text text-danger">{{ $message }}</small>
                                 @enderror
                             </div>

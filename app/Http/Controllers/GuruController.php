@@ -41,6 +41,8 @@ class GuruController extends Controller
         [
             'nama' => 'required|max:50|string',
             'gender' => 'not_in:0',
+            'jabatan' => 'required',
+            'gol' => 'required'
         ],
         [
             'required' => ':attribute harus diisi.',
@@ -57,6 +59,8 @@ class GuruController extends Controller
             $newGuru->nama =  $request->get('nama');
             $newGuru->nip = $request->get('nip');
             $newGuru->gender = $request->get('gender');
+            $newGuru->jabatan = $request->get('jabatan');
+            $newGuru->gol = $request->get('gol');
             $newGuru->user_id = auth()->user()->id;
             $newGuru->save();
             
@@ -125,6 +129,8 @@ class GuruController extends Controller
         [
             'nama' => 'required|max:50|string',
             'gender' => 'not_in:0',
+            'jabatan' => 'required',
+            'gol' => 'required'
         ],
         [
             'required' => ':attribute harus diisi.',
@@ -140,6 +146,8 @@ class GuruController extends Controller
             $editGuru = Guru::findOrFail($id);
             $editGuru->nama =  $request->get('nama');
             $editGuru->nip = $request->get('nip');
+            $editGuru->gol = $request->get('gol');
+            $editGuru->jabatan = $request->get('jabatan');
             $editGuru->gender = $request->get('gender');
             $editGuru->user_id = auth()->user()->id;
             $editGuru->save();

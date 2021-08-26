@@ -41,6 +41,7 @@ class BukuTamuController extends Controller
     {
         $request->validate([
             'nama' => 'required|string',
+            'jabatan' => 'required',
             'gender' => 'required',
             'asal' => 'required',
             'tujuan' => 'required',
@@ -52,13 +53,15 @@ class BukuTamuController extends Controller
             'nama' => 'Nama Lengkap harus terisi',
             'gender' => 'Jenis Kelamin harus terisi',
             'asal' => 'Alamat/Instansi harus terisi dan jelas',
-            'tujuan' => 'tujuan harus terisi dan jelas'
+            'tujuan' => 'Tujuan/keperluan harus terisi dan jelas',
+            'jabatan' => 'Jabatan harus terisi dan jelas'
         ]);
         try {
             $tambahTamu = new BukuTamu;
             $tambahTamu->nama = $request->get('nama');
             $tambahTamu->gender = $request->get('gender');
             $tambahTamu->asal = $request->get('asal');
+            $tambahTamu->jabatan = $request->get('jabatan');
             $tambahTamu->tujuan = $request->get('tujuan');
             $tambahTamu->user_id = Auth::id();
             $tambahTamu->save();
@@ -128,6 +131,7 @@ class BukuTamuController extends Controller
             'gender' => 'required',
             'asal' => 'required',
             'tujuan' => 'required',
+            'jabatan' => 'required',
         ],
         [
             'required' => ':attribute'
@@ -136,7 +140,8 @@ class BukuTamuController extends Controller
             'nama' => 'Nama Lengkap harus terisi',
             'gender' => 'Jenis Kelamin harus terisi',
             'asal' => 'Alamat/Instansi harus terisi dan jelas',
-            'tujuan' => 'tujuan harus terisi dan jelas'
+            'tujuan' => 'Tujuan/keperluan harus terisi dan jelas',
+            'jabatan' => 'Jabatan harus terisi dan jelas',
         ]);
 
         try {
@@ -144,6 +149,7 @@ class BukuTamuController extends Controller
             $editTamu->nama = $request->get('nama');
             $editTamu->gender = $request->get('gender');
             $editTamu->asal = $request->get('asal');
+            $editTamu->jabatan = $request->get('jabatan');
             $editTamu->tujuan = $request->get('tujuan');
             $editTamu->save();
 
