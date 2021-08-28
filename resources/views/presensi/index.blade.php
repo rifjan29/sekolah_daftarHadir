@@ -31,7 +31,9 @@
                         </button>
                     </div>
                     @endif
-
+                    <a href="{{ route('list-presensi') }}" class="btn btn-primary ml-2 mb-4">
+                        <i class="ti-eye"></i>&nbsp;Data Presensi
+                    </a>
                     <table id="data-table" class="table table-striped table-bordered">
                         <thead>
                             <tr>

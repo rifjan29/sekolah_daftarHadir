@@ -152,7 +152,7 @@ class BukuTamuController extends Controller
             $editTamu->jabatan = $request->get('jabatan');
             $editTamu->tujuan = $request->get('tujuan');
             $editTamu->save();
-
+            
             return redirect('/buku-tamu')->withStatus('berhasil merubah data');
 
         }catch (\Exception $e) {

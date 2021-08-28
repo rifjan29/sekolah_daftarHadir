@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('/admin', AdminController::class);
     Route::resource('/guru', GuruController::class);
     Route::resource('/presensi', PresensiController::class);
+    Route::get('/data-presensi',[PresensiController::class,'listPresensi'])->name('list-presensi');
     Route::resource('/buku-tamu', BukuTamuController::class);
 });
 require __DIR__.'/auth.php';

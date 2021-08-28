@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">Buku Tamu</strong>
+                        <strong class="card-title">{{ ucwords(str_replace('-', ' ', Request::segment(1))) }}</strong>
                     </div>
                     <div class="card-body">
                         @if (session('status'))
@@ -32,52 +32,36 @@
                         </div>
                         @endif
 
-                        <a href="{{ route('buku-tamu.create') }}" class="btn btn-primary ml-2 mb-4">
-                            <i class="ti-plus"></i>&nbsp;Tambah Tamu
+                        <a href="{{ route('presensi.index') }}" class="btn btn-primary ml-2 mb-4">
+                            <i class="ti-arrow-left"></i>&nbsp;Kembali
                         </a>
                         
                         <table id="data-table" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th class="text-center">#</th>
+                                    <th class="text-center">NIP</th>
                                     <th class="text-center">Nama</th>
+                                    {{-- <th class="text-center">Golongan</th> --}}
                                     <th class="text-center">Jabatan</th>
-                                    <th class="text-center">Jenis Kelamin</th>
-                                    <th class="text-center">Alamat/Instansi</th>
-                                    <th class="text-center">Tujuan/Keperluan</th>
-                                    <th class="text-center">Aksi</th>
+                                    <th class="text-center">Admin</th>
+                                    <th class="text-center">Kehadiran</th>
+                                    <th class="text-center">Keterangan</th>
+                                    <th class="text-center">Waktu</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($data as $item)
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}</td>
+                                    <td class="text-center">{{ isset($item->nip) ? $item->nip : '-' }}</td>
                                     <td class="text-center">{{ $item->nama }}</td>
-                                    <td class="text-center">{{ $item->jabatan != '' ? $item->jabatan : '-' }}</td>
-                                    <td class="text-center">{{ $item->gender }}</td>
-                                    <td class="text-center">{{ $item->asal }}</td>
-                                    <td class="text-center">{{ $item->tujuan}}</td>
-                                    <td class="d-flex justify-content-center">
-                                        <div class="mx-2">
-                                            <a href="{{ route('buku-tamu.show', $item->id) }}" class="btn btn-success">
-                                                Detail
-                                            </a>
-                                        </div>
-                                        <div class="mx-2">
-                                            <a href="{{ route('buku-tamu.edit', $item->id) }}" class="btn btn-info">
-                                                Edit
-                                            </a>
-                                        </div>
-                                        <div class="mx-2">
-                                            <form action="{{ route('buku-tamu.destroy', $item->id) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" onclick="return confirm('Hapus Data ?')" class="btn btn-danger">
-                                                    Hapus
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
+                                    {{-- <td class="text-center">{{ $item->gol }}</td> --}}
+                                    <td class="text-center">{{ $item->jabatan }}</td>
+                                    <td class="text-center">{{ $item->name }}</td>
+                                    <td class="text-center">{{ $item->presensi }}</td>
+                                    <td class="text-center">{{ isset($item->ket) ? $item->ket : '-' }}</td>
+                                    <td class="text-center">{{ $item->created_at }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

@@ -114,4 +114,31 @@ class PresensiController extends Controller
     {
         //
     }
+
+    public function listPresensi()
+    {
+        try {
+            $this->params['data'] = Presensi::select(
+                                                'presensi.presensi',
+                                                'presensi.ket',
+                                                'presensi.created_at',
+                                                'users.name',
+                                                'guru.nama',
+                                                'guru.gender',
+                                                'guru.nip',
+                                                'guru.jabatan',
+                                                'guru.gol',
+                                            )
+                                            ->join('users', 'users.id', 'presensi.user_id')
+                                            ->join('guru', 'guru.id', 'presensi.guru_id')
+                                            ->orderBy('guru.nama')
+                                            ->get();
+                                             
+            return view('presensi.data-presensi', $this->params);
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+    }
 }
