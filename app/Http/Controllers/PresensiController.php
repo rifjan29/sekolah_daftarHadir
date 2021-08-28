@@ -51,6 +51,7 @@ class PresensiController extends Controller
                     break;
                 case 'Absen':
                     $tambahPresensi->presensi = $presensi;
+                    $tambahPresensi->ket = $request->get('ket');
                     break;
                 case 'Alpa':
                     $tambahPresensi->presensi = $presensi;
@@ -133,7 +134,7 @@ class PresensiController extends Controller
                                             ->join('guru', 'guru.id', 'presensi.guru_id')
                                             ->orderBy('guru.nama')
                                             ->get();
-                                             
+
             return view('presensi.data-presensi', $this->params);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
